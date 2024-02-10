@@ -1,0 +1,88 @@
+		FILE HANDLING IN CPP
+		====================
+
+1)Modes of File Opening:
+------------------------
+There are different modes for opening a file, such as ios::in (input), ios::out (output), ios::binary (binary mode), std::ios::app (append), etc.
+
+2)File Stream Objects:
+----------------------
+ifstream -> for reading from a file
+ofstream -> for writing to a file
+fstream  -> for both reading and writing.
+
+3)EOF (End-of-File) Indicator:
+------------------------------
+
+The eof() function is used to check whether the end of a file has been reached.
+
+returns NON-ZERO when eof reached.
+
+4)Flush and Sync:
+-----------------
+The flush() function is used to flush the output buffer, and sync() is used to synchronize the associated file buffers.
+
+5)File Position Pointers:
+-------------------------
+I)Get Pointer -> INPUT operations (READING)
+
+-The get pointer is associated with input operations (reading from a file).
+-Functions related to the get pointer include:
+	i)tellg(): Returns the current position of the get pointer.
+	
+	ii)seekg(pos): Moves the get pointer to the specified position pos in the file.
+
+	iii)seekg(offset, direction): Moves the get pointer by the specified offset in the specified direction (beg, cur, end).
+
+#include <iostream>
+#include <fstream>
+
+int main() {
+    std::ifstream inputFile("example.txt");
+
+    // Get the current position of the get pointer
+    std::streampos currentPosition = inputFile.tellg();
+    std::cout << "Current Position: " << currentPosition << std::endl;
+
+    // Move the get pointer to a specific position
+    inputFile.seekg(10); // Move to the 10th character
+    std::cout << "New Position: " << inputFile.tellg() << std::endl;
+
+    inputFile.close();
+    return 0;
+}
+
+II)Put Pointer -> OUTPUT operations (WRITING)
+
+-The put pointer is associated with output operations (writing to a file).
+-Functions related to the put pointer include:
+	i)tellp(): Returns the current position of the put pointer.
+
+	ii)seekp(pos): Moves the put pointer to the specified position pos in the file.
+
+	iii)seekp(offset, direction): Moves the put pointer by the specified offset in the specified direction (beg, cur, end).
+
+#include <iostream>
+#include <fstream>
+
+int main() {
+    std::ofstream outputFile("example.txt");
+
+    // Get the current position of the put pointer
+    std::streampos currentPosition = outputFile.tellp();
+    std::cout << "Current Position: " << currentPosition << std::endl;
+
+    // Move the put pointer to a specific position
+    outputFile.seekp(20); // Move to the 20th character
+    std::cout << "New Position: " << outputFile.tellp() << std::endl;
+
+    outputFile.close();
+    return 0;
+}
+
+---------------------------------------------------------
+writting in a file : << (stream insertion operator)
+reading from file  : >> (stream extraction operator)
+---------------------------------------------------------
+
+

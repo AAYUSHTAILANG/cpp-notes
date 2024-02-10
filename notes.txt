@@ -1,0 +1,154 @@
+			CPP
+			---
+IMPORTANT POINTS:
+----------------
+-scanner terminates on space and newline
+-In C++, global functions cannot be declared as const and static.
+-int *const ptr; //valid
+	
+$int: It specifies the type of the variable that the pointer is pointing to (in this case, an integer).
+$*: It declares a pointer.
+$const: It indicates that the pointer itself is constant, meaning once it is assigned a memory address, it cannot be changed to point to a different memory location.
+
+-reference is alias.
+-::(scope resolution operator) can be used as unary as well as binary operator.
+-In C++, cin and cout are objects belonging to the istream and ostream classes, respectively.
+
+			INHERITANCE
+			-----------
+-its a mechanism of consuming the members of one class in another class by establishing parent-child relationship between the classes which provides re-usability.
+
+Advantage:
+---------
+i)reusability
+
+class A
+{
+	members
+}
+
+class B:A
+{
+
+}
+
+[<modifier>]class<child class name>:<parent class name>
+
+A->Parent or Base or Super
+B->Child or Derived or Sub 
+
+-In inheritance child class can consume member of its parent class as if they are owner of those members except "PRIVATE MEMBERS" of parent's class.
+
+-parent classes constructor must be accessible to child classes,otherwise inheritance will not be possible. ie it should not be "PRIVATE". but now vice a verse.
+
+-whenever child class object is created it implicitly calls the parent's class constructor first then its own.
+
+Constructor calling Sequence : Parent ->Child
+
+Destrucor calling Sequence : Child->Parent.
+
+-In Inheritance child class can access Parent class Member but vice a verse is not true.
+
+-We can initialize a parent classes variable by using the child class instance to make it as a reference(pointer to instance) so that the reference will be consuming the memory of child class instance but in this case also we cannot call pure child class member.
+
+
+ A a;//p is variable of class A
+ B b = new B();
+ a = b;//we can initialise parent class variable using child class instance.
+ //b=a;//error
+
+-Every class defined by us or predefined has a default parent class ie Object class(JAVA and C#).
+$In C++, there is no explicit default parent class for every class.
+--------------------------------------------------------
+#Types of Inheritance
+---------------------
+
+1)Single Inheritance:
+ 1 P -> 1 C
+
+2)Multilevel Inheritance:
+	A->B->C
+
+3)Hierarchical Inheritance:
+	A->B
+	A->C
+
+4)Multiple Inheritance(Supported by Cpp only)
+	A->B
+	C->B
+-B inheriting (imediate parent) from A as well as C
+-raises Diamond Problem.
+
+5)Hybrid Inheritance
+-Combo of 2 or more types of Inheritance.
+--------------------------------------------------------
+NOTE:
+----
+when child class instance is created, child class constructor will implicitely call the base(super) class constructor but only if the constructor is parameterless, whereas if the constructor of parent class is parameterized, the child class constructor should explicitely call that constructor by passing value of those parameters.
+
+-To call parent's class constructor through child class constructor keywords used
+
+1)super(JAVA)
+2)base(c#)
+
+ public class A
+ {
+     
+     public A(int i)
+     {
+         Console.WriteLine("PARENT CONSTRUCTOR");
+         Console.WriteLine(i++);
+     }
+ }
+ public class B: A
+ {
+     
+     public B():base(10)
+     {
+         Console.WriteLine("CHILD CONSTRUCTOR");
+     }
+ }
+ svm(String args[])
+{
+ B b= new B();
+/*output :
+	PARENT CONSTRUCTOR
+	10
+	CHILD CONSTRUCTOR
+*/
+}
+--------------------------------------------------------
+-we cannot declare anything in ternary operator.
+
+int main()
+{
+  int a=10;
+  (a<0)?(int a=100):(int a=1000);//error
+  cout<<a;
+}
+
+int main()
+{
+  int a=10;
+  (a<0)?(a=100):(a=1000);//no error
+  cout<<a;//1000
+}
+
+---------------------------------------------------------
+-we cannot write static and const function outside class.
+-they are class level function.
+
+---------------------------------------------------------
+-cin terminates on space or enter.
+
+Q)what will be the output if user enters "This is a file"
+
+int main()
+{
+	char str[8];
+	cin>>str;
+	cout<<str;//This
+} 
+ ---------------------------------------------------------
+Q)A function call can be on the LHS when:
+A function is returned as reference.

@@ -1,0 +1,72 @@
+		SCOPE RESOLUTION OPERATOR
+		=========================
+-always gives the value of global variable.
+
+int a=100;
+int main() {
+    int a=10;
+    cout<<a<<endl;//gives local variable
+ 
+   cout<<::a<<endl;//gives global variable
+    return 0;
+}
+
+-can be used with namespace name to access the variable.
+
+int a=100;//global variable
+
+namespace A
+{
+int a=80;
+}
+
+namespace B
+{
+  int a =50;
+}
+int main() {
+    int a=10;
+    cout<<a<<endl;//gives local variable
+    cout<<::a<<endl;//gives global variable
+    cout<<A::a<<endl;//gives a of namespace A
+    cout<<B::a<<endl;//gives a of namespace B
+    
+
+    return 0;
+}
+
+-Nested Classes
+
+class OuterClass {
+public:
+    class InnerClass {
+    public:
+        void innerFunction() {
+            std::cout << "Inner function" << std::endl;
+        }
+    };
+};
+
+int main() {
+    OuterClass::InnerClass obj;
+    
+    // Accessing nested class members
+    obj.innerFunction();
+
+    return 0;
+}
+
+-To initialize static variables.
+
+ class A
+{
+    public:
+    static int x;
+};
+
+ int A::x=10;
+
+int main()
+{
+    cout<<A::x<<endl;
+}
